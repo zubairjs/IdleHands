@@ -16,11 +16,44 @@
       <div class="container">
         <header class="text-center">
           <div class="logo">
-            <img class="logo" src="logo.svg" alt="" />
+            <img class="logo" src="./assets/" alt="" />
           </div>
           <h1>Login</h1>
           <p>Login to start being productive.</p>
         </header>
+        <form>
+          <div>
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              autocomplete="username"
+              required
+            />
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <div>
+            <label for="password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Enter your password"
+              pattern="^[a-zA-Z0-9]+$"
+              required
+            />
+          </div>
+          <p id="form-msg"></p>
+          <button type="submit">Login</button>
+        </form>
       </div>
     </div>
     <script
