@@ -165,6 +165,7 @@ function showInvalidInput(inputs, msg = '') {
 function showErrorMsg(msg) {
   formMsg.textContent = msg;
 }
+
 function resetForm() {
   authForm.reset();
   resetValidity([usernameInput, passwordInput, confirmPasswordInput]);
@@ -195,6 +196,11 @@ function logout() {
   showAuth();
 }
 document.getElementById('logout').addEventListener('click', logout);
+
+const activities = JSON.parse(localStorage.getItem('activities')) || {
+  current: {},
+  saved: [],
+};
 
 function storeData(obj, key, value, type) {
   if (key === 'current') {
