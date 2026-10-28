@@ -72,3 +72,20 @@ function addFormValidation(e) {
   }
 }
 authForm.addEventListener('submit', addFormValidation);
+
+function showDashboard() {
+  document.getElementById('auth-panel').classList.add('d-none');
+  document.getElementById('dashboard').classList.remove('d-none');
+  document.getElementById('dashboard-username').textContent = users.current;
+}
+
+function showAuth() {
+  document.getElementById('auth-panel').classList.remove('d-none');
+  document.getElementById('dashboard').classList.add('d-none');
+}
+
+if (state.isLoggedIn) {
+  showDashboard();
+} else {
+  showAuth();
+}
