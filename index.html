@@ -189,22 +189,28 @@
             </div>
           </div>
         </section>
-        <section id="saved">
-          <div>
-            <div class="card">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h2>
+        <section id="saved" class="col-12 col-md-5 col-xl-4 p-0 pe-lg-2">
+          <div class="container-fluid my-4">
+            <div class="card rounded-4">
+              <div class="card-body px-4">
+                <div class="row mb-3 pb-2 border-bottom">
+                  <div
+                    class="col d-flex justify-content-between align-items-center"
+                  >
+                    <h2 class="fs-5 m-0">
                       <i class="bi bi-bookmark-fill text-danger"></i> Saved
                       Activities
                     </h2>
-                    <span id="saved-count">0</span>
+                    <span
+                      id="saved-count"
+                      class="fs-6 d-inline-flex justify-content-center align-items-center rounded-circle bg-secondary text-light"
+                      >0</span
+                    >
                   </div>
                 </div>
-                <div id="saved-list" class="row">
+                <div id="saved-list" class="row d-flex gap-2">
                   <div id="empty-list-placeholder">
-                    <div class="container">
+                    <div class="container p-4 text-center">
                       <div class="fs-2"><i class="bi bi-bookmark"></i></div>
                       <p>
                         No saved activities yet. <br />
