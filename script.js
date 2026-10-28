@@ -1,3 +1,12 @@
+const users = JSON.parse(localStorage.getItem('users')) || {
+  current: null,
+  registered: [{ username: 'admin', password: 'admin123' }],
+};
+
+const state = JSON.parse(localStorage.getItem('state')) || {
+  isLoggedIn: false,
+};
+
 let isLogin = true;
 const authHeader = document.querySelector('.auth header h1');
 const authText = document.querySelector('.auth header p');
