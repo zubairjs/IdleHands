@@ -58,7 +58,7 @@ function handleFormSubmit(e) {
   const confirmPassword = confirmPasswordInput.value;
 
   if (isLogin) {
-    login();
+    login(username, password);
   } else {
     signup();
   }
@@ -72,6 +72,56 @@ function addFormValidation(e) {
   }
 }
 authForm.addEventListener('submit', addFormValidation);
+
+function login(username, password) {
+  const isAllValidated = validateInputs(username, password);
+  if (!isAllValidated) return;
+  state.isLoggedIn = true;
+  localStorage.setItem('state', JSON.stringify(state));
+  storeData(users, 'current', username, 'users');
+  showDashboard();
+}
+
+function validateInputs(username, password) {
+  if (username.trim() === '') {
+    showInvalidInput([usernameInput], 'Please enter the username');
+    return false;
+  }
+  const foundUsername = users.registered.find((u) => u.username === username);
+  if (!foundUsername) {
+    showInvalidInput([usernameInput], 'Username not found');
+    return false;
+  }
+  if (password.trim() === '') {
+    showValidInput([usernameInput]);
+    showInvalidInput([passwordInput], 'Please enter the password');
+    return false;
+  }
+  if (foundUsername && foundUsername.password !== password) {
+    showValidInput([usernameInput]);
+    showInvalidInput([passwordInput], 'You entered a wrong password');
+    return false;
+  }
+  showValidInput([usernameInput, passwordInput]);
+  showErrorMsg('');
+  return true;
+}
+
+function showValidInput(inputs) {
+  inputs.forEach((input) => input.classList.remove('is-invalid'));
+  inputs.forEach((input) => input.classList.add('is-valid'));
+}
+
+function showInvalidInput(inputs, msg = '') {
+  inputs.forEach((input) => input.classList.remove('is-valid'));
+  inputs.forEach((input) => input.classList.add('is-invalid'));
+  inputs[0].focus();
+  showErrorMsg(msg);
+}
+
+function showErrorMsg(msg) {
+  formMsg.textContent = msg;
+}
 
 function showDashboard() {
   document.getElementById('auth-panel').classList.add('d-none');
