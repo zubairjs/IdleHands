@@ -84,6 +84,15 @@ function showAuth() {
   document.getElementById('dashboard').classList.add('d-none');
 }
 
+function storeData(obj, key, value, type) {
+  if (key === 'current') {
+    obj[key] = value;
+  } else {
+    obj[key].push(value);
+  }
+  localStorage.setItem(type, JSON.stringify(obj));
+}
+
 if (state.isLoggedIn) {
   showDashboard();
 } else {
