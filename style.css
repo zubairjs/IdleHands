@@ -46,3 +46,87 @@ button {
 #form-msg {
   min-height: 1.25rem;
 }
+/* Dashboard */
+#dashboard {
+  background-color: var(--primary-bg);
+}
+header {
+  background-color: #fcfaf7;
+}
+header .navbar-brand img {
+  max-width: 3.75rem;
+}
+header button#logout:active {
+  transform: scale(0.98);
+}
+#dashboard main {
+  max-width: 100rem;
+}
+button#get-activities {
+  min-height: 3rem;
+  background-color: var(--button-bg);
+  color: var(--button-color);
+}
+button#get-activities:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 0 1.5px #e0e0e0;
+  background-color: #292827;
+}
+.card {
+  background-color: var(--secondary-bg);
+}
+#cost[data-cost-free='true'] {
+  background-color: #3cb371;
+}
+#cost[data-cost-free='false'] {
+  background-color: #663399;
+}
+#empty-activity-placeholder i {
+  font-size: 3rem;
+  color: #ddd;
+}
+#empty-activity-placeholder p {
+  line-height: 2;
+  font-size: 0.9rem;
+  color: #ababab;
+}
+#saved-count {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+div:has(+ #saved-list > div.card) span {
+  background-color: #088f8f !important;
+}
+#saved-list:has(div.card) div.card {
+  background-color: #e5e4e2;
+  transition: all 0.3s ease-in;
+}
+#saved-list:has(div.card) div.card:hover {
+  background-color: #d3d3d3;
+}
+#saved .card h3 {
+  /* font-size: 0.75rem; */
+  letter-spacing: 0.25px;
+}
+#saved .card .tags {
+  font-size: 0.75rem;
+}
+#saved .card button {
+  font-size: 0.75rem;
+}
+#saved .card button:hover {
+  background-color: mistyrose !important;
+}
+#saved .card button i {
+  transition: all 0.3s ease-in;
+}
+#saved .card button:hover i {
+  color: red !important;
+}
+#empty-list-placeholder .container > div {
+  color: #ddd;
+}
+#empty-list-placeholder .container > p {
+  font-size: 0.75rem;
+  color: #ababab;
+}
