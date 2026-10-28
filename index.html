@@ -142,21 +142,36 @@
           </div>
         </nav>
       </header>
-      <main>
+      <main
+        class="container-fluid m-auto p-2 px-lg-3 px-xl-4 px-xxl-5 row d-flex gap-0 gap-lg-2 gap-xl-3 gap-xxl-5"
+      >
         <section id="discover" class="col p-0 ps-lg-2">
-          <div>
+          <div
+            class="container-fluid my-4 d-flex justify-content-between align-items-center gap-3"
+          >
             <h2 class="fs-2 fw-bolder m-0">Discover Activities</h2>
-            <button id="get-activities" type="button">
+            <button
+              id="get-activities"
+              type="button"
+              class="btn btn-primary py-2 rounded-3"
+            >
               <i class="bi bi-arrow-repeat"></i> Get Activity
             </button>
           </div>
-          <div id="activity-container">
-            <div class="card">
-              <div id="cost" data-cost-free="true"></div>
+          <div id="activity-container" class="container-fluid">
+            <div class="card pb-3 rounded-4">
+              <div
+                id="cost"
+                class="card-header text-light d-none"
+                data-cost-free="true"
+              ></div>
               <div class="card-body">
-                <h3 class="card-title"></h3>
-                <ul class="activity-data"></ul>
-                <div id="empty-activity-placeholder">
+                <h3 class="card-title my-2 fs-2 text-center"></h3>
+                <ul class="activity-data list-group list-group-flush"></ul>
+                <div
+                  id="empty-activity-placeholder"
+                  class="text-center pt-5 pb-3"
+                >
                   <i class="bi bi-compass" class="fs-2"></i>
                   <p class="">
                     Nothing here yet… <br />
@@ -164,9 +179,9 @@
                   </p>
                 </div>
               </div>
-              <div class="card-body">
-                <div id="save-btn-container">
-                  <button id="save">
+              <div class="card-body pt-0">
+                <div id="save-btn-container" class="container d-none">
+                  <button id="save" class="btn btn-primary w-100 py-2">
                     <i class="bi bi-bookmark-plus-fill"></i> Save Activity
                   </button>
                 </div>
