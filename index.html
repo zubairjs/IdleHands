@@ -142,6 +142,39 @@
           </div>
         </nav>
       </header>
+      <main>
+        <section id="discover" class="col p-0 ps-lg-2">
+          <div>
+            <h2 class="fs-2 fw-bolder m-0">Discover Activities</h2>
+            <button id="get-activities" type="button">
+              <i class="bi bi-arrow-repeat"></i> Get Activity
+            </button>
+          </div>
+          <div id="activity-container">
+            <div class="card">
+              <div id="cost" data-cost-free="true"></div>
+              <div class="card-body">
+                <h3 class="card-title"></h3>
+                <ul class="activity-data"></ul>
+                <div id="empty-activity-placeholder">
+                  <i class="bi bi-compass" class="fs-2"></i>
+                  <p class="">
+                    Nothing here yet… <br />
+                    Click "Get Activity" to discover some stuff to do!
+                  </p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="save-btn-container">
+                  <button id="save">
+                    <i class="bi bi-bookmark-plus-fill"></i> Save Activity
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
