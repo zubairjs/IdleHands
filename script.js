@@ -60,7 +60,7 @@ function handleFormSubmit(e) {
   if (isLogin) {
     login(username, password);
   } else {
-    signup();
+    signup(username, password, confirmPassword);
   }
 }
 authForm.addEventListener('submit', handleFormSubmit);
@@ -72,6 +72,49 @@ function addFormValidation(e) {
   }
 }
 authForm.addEventListener('submit', addFormValidation);
+
+function signup(username, password, confirmPassword) {
+  const isSignupValid = validateSignup(username, password, confirmPassword);
+  if (!isSignupValid) return;
+  storeData(users, 'registered', { username, password }, 'users');
+  switchAuth();
+}
+
+function validateSignup(username, password, confirmPassword) {
+  if (username.trim() === '') {
+    showInvalidInput([usernameInput], 'Please enter the username');
+    return false;
+  }
+  const foundUsername = users.registered.find(
+    (u) => u.username === username.trim(),
+  );
+  if (foundUsername) {
+    showInvalidInput([usernameInput], 'Username already registered');
+    return false;
+  }
+  if (password.trim() === '') {
+    showValidInput([usernameInput]);
+    showInvalidInput([passwordInput], 'Please enter the password');
+    return false;
+  }
+  const pattern = /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{8,}/;
+  if (!pattern.test(password)) {
+    showValidInput([passwordInput]);
+    showInvalidInput(
+      [passwordInput],
+      'Password must be a minimum of at least 6 alphanumeric character',
+    );
+    return false;
+  }
+  if (password !== confirmPassword) {
+    showValidInput([passwordInput]);
+    showInvalidInput([confirmPasswordInput], 'Passwords do not match');
+    return false;
+  }
+  showValidInput([usernameInput, passwordInput, confirmPasswordInput]);
+  showErrorMsg('');
+  return true;
+}
 
 function login(username, password) {
   const isAllValidated = validateInputs(username, password);
