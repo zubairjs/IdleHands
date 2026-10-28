@@ -165,6 +165,17 @@ function showInvalidInput(inputs, msg = '') {
 function showErrorMsg(msg) {
   formMsg.textContent = msg;
 }
+function resetForm() {
+  authForm.reset();
+  resetValidity([usernameInput, passwordInput, confirmPasswordInput]);
+}
+
+function resetValidity(inputs) {
+  inputs.forEach((input) => input.classList.remove('is-valid'));
+  inputs.forEach((input) => input.classList.remove('is-invalid'));
+  inputs[0].focus();
+  showErrorMsg('');
+}
 
 function showDashboard() {
   document.getElementById('auth-panel').classList.add('d-none');
