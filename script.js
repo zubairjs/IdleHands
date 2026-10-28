@@ -177,6 +177,14 @@ function showAuth() {
   document.getElementById('dashboard').classList.add('d-none');
 }
 
+function logout() {
+  state.isLoggedIn = false;
+  localStorage.setItem('state', JSON.stringify(state));
+  storeData(users, 'current', null, 'users');
+  showAuth();
+}
+document.getElementById('logout').addEventListener('click', logout);
+
 function storeData(obj, key, value, type) {
   if (key === 'current') {
     obj[key] = value;
