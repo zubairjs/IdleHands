@@ -1,0 +1,48 @@
+:root {
+  --primary-bg: #ffe6c9;
+  --secondary-bg: #fdf5ff;
+  --button-bg: #141414;
+  --button-color: #fefefe;
+}
+* {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+body {
+  height: 100vh;
+  background-color: #fff6ec;
+}
+button {
+  transition: all 0.3s ease;
+}
+#auth-panel {
+  background-color: var(--primary-bg);
+}
+#auth-panel > .container {
+  max-width: 25rem !important;
+  background-color: var(--secondary-bg);
+}
+#auth-panel .logo.container {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+#auth-panel header h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+#auth-panel form button {
+  min-height: 3rem;
+  background-color: var(--button-bg);
+  color: var(--button-color);
+}
+#auth-panel form button:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 0 1.5px #e0e0e0;
+  background-color: #292827;
+}
+#auth-panel form button:active {
+  transform: scale(0.98);
+}
+#form-msg {
+  min-height: 1.25rem;
+}
