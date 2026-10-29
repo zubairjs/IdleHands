@@ -123,6 +123,7 @@ function login(username, password) {
   localStorage.setItem('state', JSON.stringify(state));
   storeData(users, 'current', username, 'users');
   showDashboard();
+  renderSavedActivities();
 }
 
 function validateInputs(username, password) {
@@ -333,10 +334,49 @@ function saveActivity() {
     alert('The activity you are trying to save have already been saved.');
   } else {
     storeData(activities, 'saved', activities.current, 'activities');
-    // render save activities
+    renderSavedActivities();
   }
 }
 document.getElementById('save').addEventListener('click', saveActivity);
+
+function renderSavedActivities() {
+  const savedList = document.getElementById('saved-list');
+  savedList.innerHTML = '';
+  if (activities.saved.length === 0) {
+    savedList.innerHTML += `
+    <div id="empty-list-placeholder">
+      <div class="container p-4 text-center">
+        <div class="fs-2"><i class="bi bi-bookmark"></i></div>
+        <p>
+          No saved activities yet. <br />
+          Your saved activities will appear here.
+        </p>
+      </div>
+    </div>`;
+  }
+  activities.saved.forEach((activity) => {
+    savedList.innerHTML += `
+    <div id="${activity.key}" class="card border-0 rounded-3">
+      <div class="card-body row justify-content-between gap-2">
+        <div class="col p-0">
+          <div class="card-title">
+            <h3 class="fw-bold small text-secondary-emphasis">${activity.activity}</h3>
+          </div>
+          <div class="card-text d-flex flex-md-row justify-content-between gap-2 text-secondary tags">
+            <span title="Type"><i class="bi bi-tag"></i> ${activity.type}</span> • 
+            <span title="Participants"><i class="bi bi-people"></i> ${activity.participants}</span> • 
+            <span title="Duration"><i class="bi bi-clock"></i> ${activity.duration}</span>
+          </div>
+        </div>
+        <div class="col-1 p-2">
+          <button type="button" class="p-1 border-0 rounded bg-transparent" data-activity-key="${activity.key}"><i class="bi bi-trash3"></i></button>
+        </div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('saved-count').textContent = activities.saved.length;
+  // add remove event listener
+}
 
 function storeData(obj, key, value, type) {
   if (key === 'current') {
@@ -353,6 +393,7 @@ function capitalize(str) {
 
 if (state.isLoggedIn) {
   showDashboard();
+  renderSavedActivities();
 } else {
   showAuth();
 }
