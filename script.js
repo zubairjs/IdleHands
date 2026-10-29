@@ -214,6 +214,28 @@ function resetActivityCard() {
   document.querySelector('.activity-data').innerHTML = '';
 }
 
+async function fetchData() {
+  try {
+    const response = await fetch(
+      'https://random-activity-sigmo.vercel.app/api/random',
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function getActivities() {
+  console.log("Gettin' it...");
+  fetchData()
+    .then((activity) => {
+      storeData(activities, 'current', activity, 'activities');
+      // Render activity
+    })
+    .catch((err) => console.error(err));
+}
+
 function storeData(obj, key, value, type) {
   if (key === 'current') {
     obj[key] = value;
