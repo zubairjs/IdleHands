@@ -20,6 +20,7 @@ button {
 #auth-panel > .container {
   max-width: 25rem !important;
   background-color: var(--secondary-bg);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 #auth-panel .logo.container {
   width: 4.5rem;
@@ -74,6 +75,7 @@ button#get-activities:hover {
 }
 .card {
   background-color: var(--secondary-bg);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 #cost[data-cost-free='true'] {
   background-color: #3cb371;
