@@ -375,7 +375,21 @@ function renderSavedActivities() {
     </div>`;
   });
   document.getElementById('saved-count').textContent = activities.saved.length;
-  // add remove event listener
+  addRemoveEventListener();
+}
+
+function removeActivity(e) {
+  const key = e.target.parentElement.getAttribute('data-activity-key');
+  activities.saved = activities.saved.filter((a) => a.key !== key);
+  localStorage.setItem('activities', JSON.stringify(activities));
+  document.getElementById('saved-count').textContent = activities.saved.length;
+  renderSavedActivities();
+}
+
+function addRemoveEventListener() {
+  Array.from(document.querySelectorAll('button[data-activity-key]'), (el) =>
+    el.addEventListener('click', removeActivity),
+  );
 }
 
 function storeData(obj, key, value, type) {
