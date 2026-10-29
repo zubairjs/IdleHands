@@ -202,6 +202,15 @@ const activities = JSON.parse(localStorage.getItem('activities')) || {
   saved: [],
 };
 
+function resetActivityCard() {
+  document
+    .getElementById('empty-activity-placeholder')
+    .classList.remove('d-none');
+  document.querySelector('.card-title').textContent = '';
+  document.getElementById('save-btn-container').classList.add('d-none');
+  document.querySelector('.activity-data').innerHTML = '';
+}
+
 function storeData(obj, key, value, type) {
   if (key === 'current') {
     obj[key] = value;
