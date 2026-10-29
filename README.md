@@ -29,13 +29,14 @@ A productivity web app that helps you discover random activities and save the on
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/zubairjs/idlehands.git
+   git clone https://github.com/zubairjs/IdleHands.git
    cd idlehands
    ```
 2. Open `index.html` in a browser, or serve locally:
    ```bash
    npx serve .
    ```
+3. Open the link copied from the terminal in a browser.
 
 No build step or dependencies required.
 
