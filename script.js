@@ -325,6 +325,19 @@ function renderActivity(randomActivity) {
 const getActivitiesBtn = document.getElementById('get-activities');
 getActivitiesBtn.addEventListener('click', getActivities);
 
+function saveActivity() {
+  const isDuplicateData = activities.saved.find(
+    (a) => a.key === activities.current.key,
+  );
+  if (isDuplicateData) {
+    alert('The activity you are trying to save have already been saved.');
+  } else {
+    storeData(activities, 'saved', activities.current, 'activities');
+    // render save activities
+  }
+}
+document.getElementById('save').addEventListener('click', saveActivity);
+
 function storeData(obj, key, value, type) {
   if (key === 'current') {
     obj[key] = value;
