@@ -231,10 +231,99 @@ function getActivities() {
   fetchData()
     .then((activity) => {
       storeData(activities, 'current', activity, 'activities');
-      // Render activity
+      renderActivity(activity);
     })
     .catch((err) => console.error(err));
 }
+
+function renderActivity(randomActivity) {
+  if (!randomActivity.key) return;
+
+  const { key, activity: name, price } = randomActivity;
+  const { type, participants, accessibility, duration, kidFriendly } =
+    randomActivity;
+
+  const metadataItems = `
+  <li class="list-group-item bg-transparent">
+    <div class="row align-items-center gap-4 gap-md-2">
+      <div class="col-1">
+        <button class="btn bg-success-subtle rounded" type="button"><i class="bi bi-tags-fill text-info"></i></button>
+      </div>
+      <div class="col d-flex flex-column small">
+        <span class="text-uppercase text-muted">Type</span>
+        <span>${capitalize(type)}</span>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item bg-transparent">
+    <div class="row align-items-center gap-4 gap-md-2">
+      <div class="col-1">
+        <button class="btn bg-success-subtle rounded" type="button"><i class="bi bi-person-plus-fill text-info"></i></button>
+      </div>
+      <div class="col d-flex flex-column small">
+        <span class="text-uppercase text-muted">Participants</span>
+        <span>${participants} ${participants > 1 ? 'people' : 'person'}</span>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item bg-transparent">
+    <div class="row align-items-center gap-4 gap-md-2">
+      <div class="col-1">
+        <button class="btn bg-success-subtle rounded" type="button"><i class="bi bi-cash text-info"></i></button>
+      </div>
+      <div class="col d-flex flex-column small">
+        <span class="text-uppercase text-muted">Price</span>
+        <span>$${price.toFixed(2)}</span>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item bg-transparent">
+    <div class="row align-items-center gap-4 gap-md-2">
+      <div class="col-1">
+        <button class="btn bg-success-subtle rounded" type="button"><i class="bi bi-universal-access text-info"></i></button>
+      </div>
+      <div class="col d-flex flex-column small">
+        <span class="text-uppercase text-muted">Accessibility</span>
+        <span>${accessibility}</span>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item bg-transparent">
+    <div class="row align-items-center gap-4 gap-md-2">
+      <div class="col-1">
+        <button class="btn bg-success-subtle rounded" type="button"><i class="bi bi-clock-fill text-info"></i></button>
+      </div>
+      <div class="col d-flex flex-column small">
+        <span class="text-uppercase text-muted">Duration</span>
+        <span>${capitalize(duration)}</span>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item bg-transparent">
+    <div class="row align-items-center gap-4 gap-md-2">
+      <div class="col-1">
+        <button class="btn bg-success-subtle rounded" type="button"><i class="bi bi-emoji-smile-fill text-info"></i></button>
+      </div>
+      <div class="col d-flex flex-column small">
+        <span class="text-uppercase text-muted">Kid Friendly</span>
+        <span><iclass="bi bi-${kidFriendly ? 'check-circle' : 'x-circle'}-fill text-success"></i>${kidFriendly ? 'Yes' : 'No'}</span>
+      </div>
+    </div>
+  </li>
+  `;
+
+  const activityContainer = document.getElementById('activity-container');
+  activityContainer.querySelector('.card').id = key;
+  const costHeader = activityContainer.querySelector('.card-header');
+  costHeader.textContent = price === 0 ? 'Free' : 'Cost money';
+  costHeader.setAttribute('data-cost-free', price === 0);
+  activityContainer.querySelector('.card-title').textContent = name;
+  activityContainer.querySelector('.activity-data').innerHTML = metadataItems;
+  document.getElementById('empty-activity-placeholder').classList.add('d-none');
+  document.getElementById('save-btn-container').classList.remove('d-none');
+}
+const getActivitiesBtn = document.getElementById('get-activities');
+getActivitiesBtn.addEventListener('click', getActivities);
 
 function storeData(obj, key, value, type) {
   if (key === 'current') {
@@ -243,6 +332,10 @@ function storeData(obj, key, value, type) {
     obj[key].push(value);
   }
   localStorage.setItem(type, JSON.stringify(obj));
+}
+
+function capitalize(str) {
+  return str[0].toUpperCase() + str.slice(1);
 }
 
 if (state.isLoggedIn) {
