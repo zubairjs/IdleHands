@@ -193,7 +193,10 @@ function logout() {
   state.isLoggedIn = false;
   localStorage.setItem('state', JSON.stringify(state));
   storeData(users, 'current', null, 'users');
+  storeData(activities, 'current', null, 'activities');
   showAuth();
+  resetForm();
+  resetActivityCard();
 }
 document.getElementById('logout').addEventListener('click', logout);
 
