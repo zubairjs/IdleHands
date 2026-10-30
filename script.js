@@ -210,6 +210,7 @@ function resetActivityCard() {
   document
     .getElementById('empty-activity-placeholder')
     .classList.remove('d-none');
+  document.querySelector('.card-header').classList.add('d-none');
   document.querySelector('.card-title').textContent = '';
   document.getElementById('save-btn-container').classList.add('d-none');
   document.querySelector('.activity-data').innerHTML = '';
@@ -318,6 +319,7 @@ function renderActivity(randomActivity) {
   const costHeader = activityContainer.querySelector('.card-header');
   costHeader.textContent = price === 0 ? 'Free' : 'Cost money';
   costHeader.setAttribute('data-cost-free', price === 0);
+  costHeader.classList.remove('d-none');
   activityContainer.querySelector('.card-title').textContent = name;
   activityContainer.querySelector('.activity-data').innerHTML = metadataItems;
   document.getElementById('empty-activity-placeholder').classList.add('d-none');
